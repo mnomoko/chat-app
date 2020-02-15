@@ -23,7 +23,9 @@
     "@react-navigation/stack": "latest",
     "@react-navigation/bottom-tabs": "latest",
     "@react-navigation/native": "latest",
-    "react-native-elements": "latest"
+    "react-native-elements": "latest",
+    "react-native-keyboard-spacer": "latest",
+    "react-native-autogrow-input": "latest"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",

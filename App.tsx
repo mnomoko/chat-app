@@ -12,9 +12,13 @@ import Signin from "./app/component/user/Signin";
 import Account from "./common/shared/account/Account";
 import { navigationRef } from './common/shared/navigation/RootNavigation';
 import Message from "./app/component/message/Message";
+import NewContact from "./app/component/user/NewContact";
+import NewConversation from "./app/component/conversation/NewConversation";
 
 const HomeStack = createStackNavigator();
 const MessagePage = createStackNavigator();
+const NewConversationPage = createStackNavigator();
+const NewContactPage = createStackNavigator();
 
 export default class App extends Component<any, any>  {
 
@@ -55,6 +59,12 @@ export default class App extends Component<any, any>  {
                 <HomeStack.Screen
                   name="Message"
                   component={this.getMessagePage}/>
+                <HomeStack.Screen
+                  name="Newconversation"
+                  component={this.getNewConversationPage}/>
+                <HomeStack.Screen
+                  name="Newcontact"
+                  component={this.getNewContactPage}/>
               </HomeStack.Navigator>
             </NavigationContainer>
           </Container>
@@ -73,6 +83,30 @@ export default class App extends Component<any, any>  {
                 headerRight: () => <Account/>
               }}/>
         </MessagePage.Navigator>
+    );
+  }
+
+  getNewConversationPage() {
+    return(
+        <NewConversationPage.Navigator>
+          <NewConversationPage.Screen
+              name="New conversation"
+              component={NewConversation}
+              initialParams={{conversations: ['hello', 'world'] }} //TODO use conversations stored in state
+              />
+        </NewConversationPage.Navigator>
+    );
+  }
+
+  getNewContactPage() {
+    return(
+        <NewContactPage.Navigator>
+          <NewContactPage.Screen
+              name="New contact"
+              component={NewContact}
+              initialParams={{conversations: ['hello', 'world'] }} //TODO use conversations stored in state
+              />
+        </NewContactPage.Navigator>
     );
   }
 

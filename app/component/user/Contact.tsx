@@ -3,6 +3,7 @@ import {FlatList, View, Text} from "react-native";
 import styles from "../../../common/style/styles";
 import SpinnerComponent from "../../../common/shared/spinner/spinner.component";
 import { ListItem, SearchBar } from 'react-native-elements';
+import {Fab, Icon} from "native-base";
 
 type ContactState = {
     value: string
@@ -53,6 +54,18 @@ export default class Contact extends Component<any, ContactState>  {
                         ItemSeparatorComponent={this.renderSeparator}
                         ListHeaderComponent={this.renderHeader}
                     />
+                    <Fab
+                        containerStyle={{ }}
+                        style={{ backgroundColor: '#5067FF' }}
+                        onPress={() => this.getToNewContact()}>
+                        <Icon name="add" />
+                    </Fab>
+                    {/*<Fab*/}
+                    {/*    containerStyle={{ }}*/}
+                    {/*    style={{ backgroundColor: '#5067FF' }}*/}
+                    {/*    onPress={() => alert('should go to new contact')}>*/}
+                    {/*    <Icon name="add" />*/}
+                    {/*</Fab>*/}
                 </View>
             );
         }
@@ -91,8 +104,7 @@ export default class Contact extends Component<any, ContactState>  {
         return (
             <SearchBar
                 placeholder="Type Here..."
-                lightTheme
-                round
+                platform="android"
                 onChangeText={this.searchFilterFunction}
                 autoCorrect={false}
                 value={this.state.value}
@@ -112,5 +124,10 @@ export default class Contact extends Component<any, ContactState>  {
             />
         );
     };
+
+    getToNewContact() {
+        const { navigation } = this.props;
+        navigation.navigate('Newcontact');
+    }
 
 }

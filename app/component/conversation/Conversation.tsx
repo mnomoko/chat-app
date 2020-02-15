@@ -1,8 +1,8 @@
 import React, {Component} from "react";
-import {FlatList, Text, View} from "react-native";
-import styles from "../../../common/style/styles";
+import {FlatList} from "react-native";
 import SpinnerComponent from "../../../common/shared/spinner/spinner.component";
 import {ListItem, SearchBar} from "react-native-elements";
+import {Fab, Icon, View} from "native-base";
 
 type ConversationState = {
     value: string
@@ -53,6 +53,18 @@ export default class Conversation extends Component<any, any>  {
                         ItemSeparatorComponent={this.renderSeparator}
                         ListHeaderComponent={this.renderHeader}
                     />
+                    <Fab
+                        containerStyle={{ }}
+                        style={{ backgroundColor: '#5067FF' }}
+                        onPress={() => this.getToNewConversation() }>
+                        <Icon name="add" />
+                    </Fab>
+                    {/*<Fab*/}
+                    {/*    containerStyle={{ }}*/}
+                    {/*    style={{ backgroundColor: '#5067FF' }}*/}
+                    {/*    onPress={() => alert('should go to new conversation')}>*/}
+                    {/*    <Icon name="add" />*/}
+                    {/*</Fab>*/}
                 </View>
             );
         }
@@ -93,8 +105,7 @@ export default class Conversation extends Component<any, any>  {
         return (
             <SearchBar
                 placeholder="Type Here..."
-                lightTheme
-                round
+                platform="android"
                 onChangeText={this.searchFilterFunction}
                 autoCorrect={false}
                 value={this.state.value}
@@ -117,7 +128,13 @@ export default class Conversation extends Component<any, any>  {
 
     getToConversation() {
         const { navigation } = this.props;
+        console.log(navigation);
         navigation.navigate('Message');
+    }
+
+    getToNewConversation() {
+        const { navigation } = this.props;
+        navigation.navigate('Newconversation');
     }
 
 }
